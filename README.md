@@ -164,6 +164,7 @@ bash launch_full_pipeline.sh
 |  ├── cellranger-analysis
 |  ├── clone-phylogeny-analysis
 |  ├── cluster-cell-calling
+|  ├── de-go-analysis
 |  ├── fastqc-analysis
 |  ├── integrative-analysis
 |  ├── project-updates
