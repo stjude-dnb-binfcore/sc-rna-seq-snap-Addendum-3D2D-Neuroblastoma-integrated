@@ -20,8 +20,8 @@
 #       C: Upstream analysis
 #       D: Integrative analysis
 #       E: Cluster cell calling
-#       F: Cell types annotation
-#       G: Remove contamination
+#       F: Remove contamination
+#       G: Cell types annotation
 #       H: Clone Phylogeny Analysis
 #       I: DE GO analysis
 #       J: R/Shiny app packaging
