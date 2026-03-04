@@ -25,7 +25,7 @@ yaml <- read_yaml(configFile)
 # Parameters
 root_dir <- yaml$root_dir
 PROJECT_NAME <- yaml$PROJECT_NAME
-method <- yaml$method
+method <- yaml$method_annotation_module
 assay = yaml$assay_filter_object
 
 # Set up directories and paths to root_dir and analysis_dir
@@ -258,7 +258,34 @@ if (method == "all"){
         warning("Number of rows in new_metadata doesn't match the number of cells in seurat_obj. Label metadata will not be added to the Seurat object.")
       }  
       
-    }
+      
+    } else if (method == "gene_markers"){
+      
+      # Input files
+      object_file <- file.path(gene_markers_results_dir, "seurat_obj_gene_markers.rds")
+
+      # Read seurat object #########################
+      ##############################################
+      seurat_obj <- readRDS(object_file)
+      
+      # Rename the column in the metadata of the Seurat object
+      seurat_obj@meta.data <- seurat_obj@meta.data %>%
+        rename_with(~ paste("gene_markers_", ., sep = ""), matches("(?i)(\\.?score(\\.?1)?)$")) 
+      
+    } else if (method == "reference"){
+      
+      # Input files
+      object_file <- file.path(reference_results_dir, "seurat_obj_reference.rds")
+
+      # Read seurat object #########################
+      ##############################################
+      seurat_obj <- readRDS(object_file)
+      
+      # Rename the column in the metadata of the Seurat object
+      seurat_obj@meta.data <- seurat_obj@meta.data %>%
+        rename_with(~ paste("reference_", ., sep = ""), matches("(?i)(\\.?score(\\.?1)?)$")) 
+    
+}
   
   
 #############################################################################
